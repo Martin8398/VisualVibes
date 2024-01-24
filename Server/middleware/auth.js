@@ -1,7 +1,7 @@
 import { read } from "fs";
 import Jwt from "jsonwebtoken";
 
-export const verifiedToken = async (req, res, next) => {
+export const verifyToken = async (req, res, next) => {
     try {
         let token = req.header("Authorization")
 

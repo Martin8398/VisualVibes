@@ -9,8 +9,11 @@ import morgan from "morgan";
 import helmet from "helmet";
 import { fileURLToPath } from "url";
 import authRoutes from "./routes/auth.js";
-import userRputes from "./routes/users.js"
+import userRoutes from "./routes/users.js"
+import postRoutes from "./routes/posts.js";
 import { register } from "./controllers/auth.js";
+import { createPost } from "./controllers/posts.js";
+import { verifyToken } from "./middleware/auth.js";
 
 // Configs
 
@@ -43,6 +46,7 @@ const upload = multer({ storage });
 // Routes with files
 
 app.post("/auth/register", upload.single("picture"), register);
+app.post("/post", verifyToken, upload.single("picture"), createPost);
 
 // Routes
 
